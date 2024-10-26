@@ -1,0 +1,9 @@
+[submodule "cmumaps"]
+	path = cmumaps
+	url = https://github.com/ScottyLabs/cmumaps.git
+[submodule "cmucourses"]
+	path = cmucourses
+	url = https://github.com/ScottyLabs/cmucourses.git
+[submodule "cmueats"]
+	path = cmueats
+	url = https://github.com/ScottyLabs/cmueats.git
