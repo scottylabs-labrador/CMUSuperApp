@@ -17,14 +17,14 @@ export default async function ContentLayout({
 
   return (
     <div className="flex h-screen w-screen">
-      <div className="bg-black left-0 top-0 flex-none w-[15vw] h-full">
+      <div className="relative bg-purple-900 w-[15vw] left-[-13vw] flex-none h-full 
+                      ease-in duration-150 hover:left-0 hover:bg-black z-10"
+      >
         <NavBar />
       </div>
       <div className="flex-initial w-[85vw]">
         <div className="flex justify-center">
-          <main className="bg-black h-screen fixed w-[600px] container">
               {children}
-          </main>
         </div>
       </div> 
     </div>

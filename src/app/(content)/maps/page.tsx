@@ -1,12 +1,14 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { useEffect, useRef, useState } from "react";
-import { Photo } from "~/types";
 
-export default function MapsPage() {
+import React from "react";
+
+export default function MapsPage({ params }: { params: { slug: string } }) {
   return (
-    <main className="container relative overflow-scroll h-screen">
-      <p className="text-4xl text-white font-bold pt-4 text-center">MAPS</p>
-    </main>
+    <iframe
+      className="w-[98vw] h-full fixed top-0 left-[2vw] z-0"
+      src="http://localhost:3001"
+      tabIndex={0} /* Make iframe focusable */
+      onLoad={(e) => e.target.contentWindow.focus()} /* Set focus on load */
+    />
   );
 }

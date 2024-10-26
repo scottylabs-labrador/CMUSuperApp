@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, use } from "react";
-import UploadModal from "./UploadModal";
 import { useDispatch } from "react-redux";
 import { setIsModalOpen } from "~/lib/features/uiSlice";
 import { usePathname } from "next/navigation";
@@ -29,7 +28,6 @@ export default function NavBar() {
                         CMUCOURSES
                     </a>
                 </div>
-            <UploadModal/>
         </Fragment>
     );
     }
