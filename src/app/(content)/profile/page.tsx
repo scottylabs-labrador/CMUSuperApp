@@ -42,12 +42,12 @@ export default function ProfilePage() {
     <div className="p-4 font-sans">
       <div className="flex items-center mb-4">
         <img
-          src="https://via.placeholder.com/80"
+          src= {user?.imageUrl}
           alt="Profile"
           className="w-20 h-20 rounded-full"
         />
         <div className="ml-4">
-          <h1 className="text-2xl font-bold">{user?.emailAddresses[0]?.emailAddress}</h1>
+          <h1 className="text-2xl text-white font-bold">{user?.fullName}</h1>
           <p className="text-gray-500">{photos.length} posts</p>
         </div>
         <div className="ml-auto">
