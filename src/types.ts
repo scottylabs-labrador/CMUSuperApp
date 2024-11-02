@@ -1,7 +1,6 @@
-export interface Photo {
-    id: string;
+export type AppInfo = {
+    name: string;
+    description: string;
+    icon: string;
     url: string;
-    timestamp: Date;
-    userEmail: string;
-}
-  
+};
