@@ -5,8 +5,11 @@ import { Photo } from "~/types";
 
 export default function EatsPage() {
   return (
-    <main className="container relative overflow-scroll h-screen">
-      <p className="text-4xl text-white font-bold pt-4 text-center">EATS</p>
-    </main>
+    <iframe
+      className="w-[98vw] h-full fixed top-0 left-[2vw] z-0"
+      src="https://cmueats.com"
+      tabIndex={0} /* Make iframe focusable */
+      onLoad={(e) => e.target.contentWindow.focus()} /* Set focus on load */
+    />
   );
 }
