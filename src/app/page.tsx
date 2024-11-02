@@ -1,5 +1,5 @@
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 
 export default async function HomePage() {

@@ -26,7 +26,10 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "@public/*": ["node_modules/cmumap/public/*"],
+      "@icons/*": ["node_modules/cmumap/public/assets/icons/*"],
+      "@/*": ["node_modules/cmumap/src/*"]
     }
   },
   "include": [

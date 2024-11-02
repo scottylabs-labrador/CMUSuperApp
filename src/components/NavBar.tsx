@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, use } from "react";
-import UploadModal from "./UploadModal";
 import { useDispatch } from "react-redux";
 import { setIsModalOpen } from "~/lib/features/uiSlice";
 import { usePathname } from "next/navigation";
@@ -17,19 +16,18 @@ export default function NavBar() {
                 <div className="grid grid-rows-3 gap-y-6 px-4 pt-[50px] overflow-hidden text-white">
                     <div className="font-bold text-lg">InstaPlate.</div>
                     <a href="/eats" className={page == "feed" ? "font-bold" : ""}>
-                        CMUEATS
+                        CMUEats
                     </a>
-                    <p onClick={() => dispatch(setIsModalOpen(true))} className={isModalOpen ? "font-bold" : ""}>
-                        Action button
-                    </p>
                     <a href="/maps" className={page == "profile" ? "font-bold" : ""}>
-                        CMUMAPS
+                        CMUMaps
                     </a>
                     <a href="/courses" className={page == "profile" ? "font-bold" : ""}>
-                        CMUCOURSES
+                        CMUCourses
+                    </a>
+                    <a href="/canvas" className={page == "profile" ? "font-bold" : ""}>
+                        Canvas
                     </a>
                 </div>
-            <UploadModal/>
         </Fragment>
     );
     }

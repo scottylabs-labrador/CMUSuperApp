@@ -5,8 +5,11 @@ import { Photo } from "~/types";
 
 export default function CoursesPage() {
   return (
-    <main className="container relative overflow-scroll h-screen">
-      <p className="text-4xl text-white font-bold pt-4 text-center">COURSES</p>
-    </main>
+    <iframe
+      className="w-[98vw] h-full fixed top-0 left-[2vw] z-0"
+      src="https://courses.scottylabs.org"
+      tabIndex={0} /* Make iframe focusable */
+      onLoad={(e) => e.target.contentWindow.focus()} /* Set focus on load */
+    />
   );
 }
