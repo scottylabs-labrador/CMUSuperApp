@@ -26,7 +26,12 @@ export default async function HomePage() {
     return (
       <main className="flex h-[95vh] flex-col items-center ">
         {/* Top bar */}
-        <div className="flex flex-row text-3xl text-white font-bold bg-amber-600 w-full h-14 px-2 py-2"> {"Su" + "u".repeat(Math.floor(Math.random()*10)) + "perapp"} </div>
+        <div className="flex flex-row justify-between text-3xl text-white font-bold bg-amber-600 w-full h-14 px-4 py-2"> 
+          <div>
+            {"Su" + "u".repeat(Math.floor(Math.random()*10)) + "perapp"}
+          </div>
+          <img src="/assets/profile.svg" alt = "Account" className="h-10 w-10 cursor-pointer" />
+        </div>
         <div className="container flex flex-col gap-12 px-4 py-16 ">
           <SignedOut>
             <h1 className="text-5xl font-extrabold tracking-tight text-black sm:text-[5rem]">
