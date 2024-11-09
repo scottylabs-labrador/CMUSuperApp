@@ -34,7 +34,7 @@ export default async function HomePage() {
             </h1>
             <SignInButton mode="modal">
               
-              <button className="bg-blue-500 rounded-lg p-4 text-2xl"> 🪵 📥</button>
+              <button className="bg-blue-500 rounded-lg p-4 text-2xl"> Login </button>
             </SignInButton>
           </SignedOut>
           <SignedIn>
