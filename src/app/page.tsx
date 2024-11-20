@@ -20,6 +20,17 @@ export default async function HomePage() {
         description: "Find where your next class is on campus.",
         icon: "assets/maps.png",
         url: "/maps",
+      }, {
+        name: "Lost and Found",
+        description: "Find your lost items",
+        icon: "/assets/lostandfound.png",
+        url: "/lostandfound",
+      },
+      {
+        name: "Lost and Found",
+        description: "Find your lost items",
+        icon: "/assets/lostandfound.png",
+        url: "/lostandfound",
       }
     ]
 
@@ -43,13 +54,15 @@ export default async function HomePage() {
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <div className="flex flex-row items-center gap-4">
-              {
-                mainAppInfo.map((app) => (
-                  <AppBlock key={app.name} appInfo={app}></AppBlock>
-                ))
-              }
-            </div> {/* Main apps carousel */}
+            <div className="relative bg-gray-600 rounded-lg p-2 overflow-x-auto h-96">
+              <div className="flex flex-nowrap flex-row gap-4">
+                {
+                  mainAppInfo.map((app) => (
+                    <AppBlock key={app.name} appInfo={app} cardType="l"></AppBlock>
+                  ))
+                }
+            </div>
+            </div>
             <div className="flex flex-row items-center gap-4"></div> {/* Secondary apps carousel */}
             <div className="flex flex-row items-center gap-4"></div> {/* Tertiary apps carousel */}
 
