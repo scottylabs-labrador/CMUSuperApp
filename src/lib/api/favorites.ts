@@ -9,12 +9,36 @@ import prisma from "../prisma";
 export async function getFavorites(clerkId: string): Promise<string[]>{
     const User = await prisma.user.findUnique({
         where: {
-          id: clerkId,
+          clerkId: clerkId,
         },
       })
-    return [];   
+    return User.favorites;   
 }
 
-export async function addFavorite(appName: string, clerkId: string): {
-    return;
+export async function addFavorite(appName: string, clerkId: string){
+    const favorites = getFavorites(clerkId)
+    const addUser = await prisma.user.update({
+        where: {
+          clerkId: clerkId,
+        },
+        data: {
+          favorites : {
+            push: appName
+          },
+        },
+      })
+}
+
+export async function removeFavorite(appName: string, clerkId: string){
+    const favorites = getFavorites(clerkId)
+    const addUser = await prisma.user.update({
+        where: {
+          id: clerkId,
+        },
+        data: {
+          favorites : {
+            push: appName
+          },
+        },
+      })
 }
