@@ -7,6 +7,6 @@ export async function getFavorites(clerkId: string): Promise<string[]>{
     return [];   
 }
 
-export async function addFavorite(appName: string, clerkId: string): {
-    
+export async function addFavorite(appName: string, clerkId: string): Promise<boolean>{
+    return true;
 }
