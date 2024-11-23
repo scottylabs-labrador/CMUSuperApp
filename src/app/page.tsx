@@ -43,7 +43,7 @@ export default async function HomePage() {
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row items-center gap-4 cursor-pointer">
               {
                 mainAppInfo.map((app) => (
                   <AppBlock key={app.name} appInfo={app}></AppBlock>
