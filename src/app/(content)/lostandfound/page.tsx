@@ -1,12 +1,13 @@
 "use client";
+import { useUser } from "@clerk/nextjs";
+import { useEffect, useRef, useState } from "react";
+import { Photo } from "~/types";
 
-import React from "react";
-
-export default function MapsPage({ params }: { params: { slug: string } }) {
+export default function EatsPage() {
   return (
     <iframe
       className="w-[98vw] h-full fixed top-0 left-[2vw] z-0"
-      src="http://localhost:3002"
+      src="https://lostandfound.andrew.cmu.edu"
       tabIndex={0} /* Make iframe focusable */
       onLoad={(e) => e.target.contentWindow.focus()} /* Set focus on load */
     />
