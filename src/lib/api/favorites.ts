@@ -17,16 +17,20 @@ export async function getFavorites(clerkId: string): Promise<string[]>{
 
 export async function addFavorite(appName: string, clerkId: string){
     const favorites = getFavorites(clerkId)
-    const addUser = await prisma.user.update({
+    const addUser = await prisma.user.upsert({
         where: {
           clerkId: clerkId,
         },
-        data: {
+        update: {
           favorites : {
             push: appName
           },
         },
-      })
+        create: {
+                clerkId: clerkId,
+                favorites : [appName],
+            }
+        })
 }
 
 export async function removeFavorite(appName: string, clerkId: string){
