@@ -26,12 +26,6 @@ export default async function HomePage() {
         icon: "/assets/lostandfound.png",
         url: "/lostandfound",
       },
-      {
-        name: "Lost and Found",
-        description: "Find your lost items",
-        icon: "/assets/lostandfound.png",
-        url: "/lostandfound",
-      }
     ]
 
     return (
