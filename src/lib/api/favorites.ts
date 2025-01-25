@@ -31,6 +31,8 @@ export async function addFavorite(appName: string, clerkId: string){
                 favorites : [appName],
             }
         })
+    console.log(addUser)
+    return addUser
 }
 
 export async function removeFavorite(appName: string, clerkId: string){
