@@ -1,6 +1,7 @@
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { AppBlock } from "~/components/AppBlock";
 import { AppInfo } from "~/types";
+import { FaSearch } from "react-icons/fa";
 
 export default async function HomePage() {
     const mainAppInfo: AppInfo[] = [
@@ -34,6 +35,11 @@ export default async function HomePage() {
           <div>
             {"Su" + "u".repeat(Math.floor(Math.random()*10)) + "perapp"}
           </div>
+          <form action="https://scotty.lol/search" method="get" name="searchform" target="_blank" className="flex rounded-full pl-2 bg-gray-100">
+            <input name="sitesearch" type="hidden" value=""></input>
+            <input autoComplete="on" name="q" placeholder="Search Google" required={true} className="relative bg-transparent top-0"  type="text"></input>
+            <button type="submit" className="justify-self-end"><FaSearch className="pr-1" /></button>
+          </form>
           <img src="/assets/profile.svg" alt="Account" className="h-10 w-10 cursor-pointer" />
         </div>
         <div className="container flex flex-col gap-12 px-4 py-16 pb-32">
