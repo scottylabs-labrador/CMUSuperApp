@@ -3,9 +3,10 @@
 import { useState } from "react";
 
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
-import { AppBlock } from "~/components/AppBlock";
 import { AppInfo } from "~/types";
 import { FaSearch } from "react-icons/fa";
+import { AppBlock } from "~/components/AppBlock";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function HomePage() {
     const mainAppInfo: AppInfo[] = [
@@ -52,7 +53,11 @@ export default function HomePage() {
         setActivePopup(null);
     };
 
+    const queryClient = new QueryClient()
+
+
     return (
+      <QueryClientProvider client={queryClient}>
       <main className="flex min-h-screen flex-col items-center bg-slate-300" onClick={closePopup}>
         {/*Implement the Top Bar*/}
         <div className="flex flex-row justify-between text-3xl text-black font-bold bg-white w-full h-14 px-4 py-2"> 
@@ -91,12 +96,7 @@ export default function HomePage() {
               <div className="flex flex-nowrap flex-row gap-4">
                   {
                     mainAppInfo.map((app) => (
-                      <a href={app.url} key={app.name} className="flex flex-col items-center w-full cursor-pointer transition-transform transform hover:scale-105 border-2 border-black p-4 rounded-lg bg-transparent">
-
-                          <img src={app.icon} alt={app.name} className="w-32 h-32 mb-2 object-contain" />
-                          <p className="font-medium text-white text-lg">{app.name}</p>
-                          <p className="text-sm text-white">{app.description}</p>
-                      </a>
+                      <AppBlock app={app}/>
                     ))
                   }
               </div>
@@ -176,5 +176,6 @@ export default function HomePage() {
           </SignedIn>
         </div>
       </main>
+      </QueryClientProvider>
     );
 }

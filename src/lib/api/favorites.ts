@@ -6,17 +6,30 @@ import prisma from "../prisma";
  * This is a server-side function.  It will not be included in the client bundle which is good because of the Firebase SDK.
  */
 
-export async function getFavorites(clerkId: string): Promise<string[]>{
+export async function getFavorites(clerkId: string | undefined): Promise<string[]>{
+    if (!clerkId) {
+        return [];
+    }
     const User = await prisma.user.findUnique({
         where: {
           clerkId: clerkId,
         },
       })
-    return User.favorites;   
+    console.log(User)
+    return User?.favorites || [];   
 }
 
-export async function addFavorite(appName: string, clerkId: string){
-    const favorites = getFavorites(clerkId)
+export async function addFavorite(appName: string, clerkId: string | undefined){
+    if (!clerkId) {
+        return;
+    }
+
+    const favorites = await getFavorites(clerkId)
+    if (favorites.includes(appName)) {
+        return favorites;
+    }
+    const newFavorites = [...favorites, appName]
+
     const addUser = await prisma.user.upsert({
         where: {
           clerkId: clerkId,
@@ -32,19 +45,23 @@ export async function addFavorite(appName: string, clerkId: string){
             }
         })
     console.log(addUser)
-    return addUser
+    return addUser.favorites
 }
 
-export async function removeFavorite(appName: string, clerkId: string){
-    const favorites = getFavorites(clerkId)
+export async function removeFavorite(appName: string, clerkId: string | undefined){
+    if (!clerkId) {
+        return;
+    }
+    const favorites = await getFavorites(clerkId)
+    console.log("removeFavorite", favorites)
+    const newFavorites = favorites.filter((favorite) => favorite !== appName)
     const addUser = await prisma.user.update({
         where: {
-          id: clerkId,
+          clerkId: clerkId,
         },
         data: {
-          favorites : {
-            push: appName
-          },
+          favorites: newFavorites
         },
       })
+    return addUser.favorites
 }
