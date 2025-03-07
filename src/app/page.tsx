@@ -7,6 +7,8 @@ import { AppInfo } from "~/types";
 import { FaSearch } from "react-icons/fa";
 import { AppBlock } from "~/components/AppBlock";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import FavoriteButton from "~/components/FavoriteButton";
+import FavoritesBar from "~/components/FavoritesBar";
 
 export default function HomePage() {
     const mainAppInfo: AppInfo[] = [
@@ -33,13 +35,62 @@ export default function HomePage() {
       }
     ];
 
-    //Under Development Buttons
-    const underDevelopmentApps = [
-      "Research @ CMU",
-      "Study Group Finder",
-      "Cooking with AI",
-      "CMUGPT",
-      "Comm[you]nity"
+    const academicAppInfo: AppInfo[] = [
+      {
+        name: "Canvas",
+        description: "Access your course materials.",
+        icon: "/assets/canvas.png",
+        url: "https://canvas.cmu.edu",
+      }, {
+        name: "Piazza",
+        description: "Ask questions and collaborate with classmates.",
+        icon: "/assets/piazza.png",
+        url: "https://piazza.com/cmu",
+      }, {
+        name: "Gradescope",
+        description: "Submit and grade assignments.",
+        icon: "/assets/gradescope.png",
+        url: "https://www.gradescope.com",
+      }, {
+        name: "SIO",
+        description: "Manage your course schedule.",
+        icon: "/assets/sio.png",
+        url: "https://s3.andrew.cmu.edu/sio",
+      }, {
+        name: "Ed",
+        description: "Access your course materials.",
+        icon: "/assets/ed.png",
+        url: "https://edstem.org",
+      }
+    ];
+
+    const underDevelopmentAppInfo: AppInfo[] = [
+      {
+        name: "Research @ CMU",
+        description: "Find the best research opportunities on campus.",
+        icon: "/assets/research.png",
+        url: "/research",
+      }, {
+        name: "Study Group Finder",
+        description: "Find the best study groups on campus",
+        icon: "/assets/studygroup.png",
+        url: "/studygroup",
+      }, {
+        name: "Cooking with AI",
+        description: "Find the best recipes on campus.",
+        icon: "/assets/cooking.png",
+        url: "/cooking",
+      }, {
+        name: "CMUGPT",
+        description: "Find the best GPT on campus.",
+        icon: "/assets/gpt.png",
+        url: "/gpt",
+      }, {
+        name: "Comm[you]nity",
+        description: "Find the best community on campus.",
+        icon: "/assets/community.png",
+        url: "/community",
+      }
     ];
 
     //Modules to implement popup
@@ -92,11 +143,12 @@ export default function HomePage() {
             </SignInButton>
           </SignedOut>
           <SignedIn>
+          <FavoritesBar />
           <div className="relative bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 rounded-lg p-6 shadow-md flex justify-center">
               <div className="flex flex-nowrap flex-row gap-4">
                   {
                     mainAppInfo.map((app) => (
-                      <AppBlock app={app}/>
+                      <AppBlock key={app.name} app={app}/>
                     ))
                   }
               </div>
@@ -107,31 +159,15 @@ export default function HomePage() {
               <h2 className="text-2xl font-bold text-slate-800">Academic Links</h2>
               <div className="relative bg-slate-300 rounded-lg p-2 overflow-x-auto shadow-none">
                 <div className="flex flex-nowrap flex-row gap-4">
-                  <a href="https://canvas.cmu.edu" target="_blank" rel="noopener noreferrer" 
-                     className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black">
-                    <img src="/assets/canvas.png" alt="Canvas" className="w-32 h-32 mb-2 object-contain"/>
-                    <span className="font-medium text-white text-lg">Canvas</span>
-                  </a>
-                  <a href="https://piazza.com/cmu" target="_blank" rel="noopener noreferrer"
-                     className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black">
-                    <img src="/assets/piazza.png" alt="Piazza" className="w-32 h-32 mb-2 object-contain"/>
-                    <span className="font-medium text-white text-lg">Piazza</span>
-                  </a>
-                  <a href="https://www.gradescope.com" target="_blank" rel="noopener noreferrer"
-                     className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black">
-                    <img src="/assets/gradescope.png" alt="Gradescope" className="w-32 h-32 mb-2 object-contain"/>
-                    <span className="font-medium text-white text-lg">Gradescope</span>
-                  </a>
-                  <a href="https://s3.andrew.cmu.edu/sio" target="_blank" rel="noopener noreferrer"
-                     className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black">
-                    <img src="/assets/sio.png" alt="SIO" className="w-32 h-32 mb-2 object-contain"/>
-                    <span className="font-medium text-white text-lg">SIO</span>
-                  </a>
-                  <a href="https://edstem.org" target="_blank" rel="noopener noreferrer"
-                     className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black">
-                    <img src="/assets/ed.png" alt="Ed" className="w-32 h-32 mb-2 object-contain"/>
-                    <span className="font-medium text-white text-lg">Ed</span>
-                  </a>
+                  {academicAppInfo.map((app) => (
+                    <div key={app.name} className="relative">
+                      <FavoriteButton app={app} />
+                    <a href={app.url} key={app.name} className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black">
+                      <img src={app.icon} alt={app.name} className="w-32 h-32 mb-2 object-contain"/>
+                      <span className="font-medium text-white text-lg">{app.name}</span>
+                    </a>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -140,13 +176,14 @@ export default function HomePage() {
               <h2 className="text-2xl font-bold text-slate-800">Under Development</h2>
               <div className="relative bg-slate-300 rounded-lg p-2 overflow-x-auto shadow-none">
                 <div className="flex flex-nowrap flex-row gap-4">
-                  {underDevelopmentApps.map((appName, index) => (
+                  {underDevelopmentAppInfo.map((app, index) => (
                       <div key={index} className="relative">
+                        <FavoriteButton app={app} />
                         {/* Clickable Box */}
-                        <div onClick={(e) => { e.stopPropagation(); togglePopup(index); }} 
+                        <div onClick={(e) => {e.stopPropagation(); togglePopup(index); }} 
                             className="flex-none bg-slate-400 p-6 rounded-xl shadow-md flex flex-col items-center justify-center w-72 h-48 border-2 border-black cursor-pointer hover:bg-slate-500 transition-all">
                           <div className="w-32 h-32 mb-2 bg-slate-500 rounded-full"></div>
-                          <span className="font-medium text-gray-800 text-lg">{appName}</span>
+                          <span className="font-medium text-gray-800 text-lg">{app.name}</span>
                         </div>
 
                         {/* Popup */}
@@ -161,17 +198,20 @@ export default function HomePage() {
               </div>
             </div>
             {activePopup !== null && (
+              <div>
               <div 
                 className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 flex justify-center items-center"
                 onClick={closePopup} // Close when clicking outside
               >
-                <div 
-                  className="bg-white w-[48rem] h-[36rem] p-6 rounded-lg shadow-lg border-2 border-black flex flex-col justify-center items-center text-center"
-                  onClick={(e) => e.stopPropagation()} // Prevent click inside box from closing popup
-                >
-                  <p className="text-black text-lg font-medium"> Coming soon!</p>
-                </div>
+                
               </div>
+              <div 
+              className="fixed top-[12.5vh] left-[12.5vw] bg-white w-[75vw] h-[75vh] p-6 rounded-lg shadow-lg border-2 border-black"
+              onClick={(e) => e.stopPropagation()} // Prevent click inside box from closing popup
+          >
+              <p className="text-black text-lg font-medium"> Coming soon!</p>
+            </div>
+            </div>
             )}
           </SignedIn>
         </div>
