@@ -1,14 +1,56 @@
+/* Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Optional: Apply font family globally using Tailwind class */
 body {
-    font-family: '--font-geist-sans', sans-serif;
+  @apply font-sans;
 }
+
+/* Optional: Add font family fallback in case you are using next/font or CSS variables */
+:root {
+  --font-geist-sans: 'Geist', sans-serif; /* Replace with actual font if needed */
+}
+
+/* Hides scrollbars from all .container elements (optional, use only if you want this globally) */
 .container {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+  scrollbar-width: none;    /* Firefox */
 }
-.container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+
+.container::-webkit-scrollbar {
+  display: none;            /* Chrome, Safari, Opera */
+}
+
+/* Scrollbar styling for hover-aware scrollable containers */
+.custom-scroll-container {
+  scrollbar-width: none; /* Firefox hides track */
+}
+
+/* When actively scrolling or hovered, show scrollbar */
+.custom-scroll-container.scrolling {
+  scrollbar-width: thin;
+}
+
+/* WebKit (Chrome/Safari) Scrollbar Base */
+.custom-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Show scrollbar only on scroll */
+.custom-scroll-container.scrolling::-webkit-scrollbar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Scrollbar thumb styling */
+.custom-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #94a3b8; /* Light-gray thumb (adjust to your theme later if needed) */
+  border-radius: 4px;
 }

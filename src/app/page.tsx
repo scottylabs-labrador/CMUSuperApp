@@ -240,34 +240,34 @@ export default function HomePage() {
           )}
         </div>
       </div>
-  <style>{`
-    .custom-scroll-container::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      background: transparent;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-  
-    .custom-scroll-container.scrolling::-webkit-scrollbar {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  
-    .custom-scroll-container::-webkit-scrollbar-thumb {
-      background-color: #000000};
-      border-radius: 4px;
-    }
-  
-    .custom-scroll-container {
-      scrollbar-width: none; /* Firefox hides scrollbar track by default */
-    }
-  
-    .custom-scroll-container.scrolling {
-      scrollbar-width: thin;
-    }
-  `}</style>
+      <style>{`
+  .custom-scroll-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .custom-scroll-container.scrolling::-webkit-scrollbar {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .custom-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 4px;
+  }
+
+  .custom-scroll-container {
+    scrollbar-width: none; /* Firefox hides scrollbar track by default */
+  }
+
+  .custom-scroll-container.scrolling {
+    scrollbar-width: thin;
+  }
+`}</style>
   <div className="container flex flex-col gap-12 px-4 py-16 pb-32">
     <SignedOut>
       <h1 className={`text-5xl font-extrabold tracking-tight ${textColor} sm:text-[5rem]`}>
