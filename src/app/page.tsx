@@ -160,7 +160,7 @@ export default function HomePage() {
     }, []);
 
     return (
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={QueryClient}>
       <main className="flex min-h-screen flex-col items-center bg-slate-300" onClick={closePopup}>
         {/*Implement the Top Bar*/}
         <div className={`flex flex-row justify-between text-3xl font-bold ${bgColor} ${textColor} w-full h-14 px-4 py-2`}> 
