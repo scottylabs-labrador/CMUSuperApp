@@ -41,6 +41,9 @@ export default function NavBar() {
                     <a href="https://myoie.andrew.cmu.edu/" target = "_blank" className={page == "profile" ? "font-bold" : ""}>
                         OIE Portal
                     </a>
+                    <a href="https://www.pandanotes.org/" target = "_blank" className={page == "profile" ? "font-bold" : ""}>
+                        PandaNotes
+                    </a>
                     <a href="https://academicaudit.andrew.cmu.edu/" target = "_blank" className={page == "profile" ? "font-bold" : ""}>
                         Stellic
                     </a>

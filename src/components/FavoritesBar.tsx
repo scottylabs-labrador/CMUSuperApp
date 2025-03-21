@@ -60,8 +60,12 @@ function FavoritesBar() {
         description: "Access your course materials.",
         icon: "/assets/ed.png",
         url: "https://edstem.org",
-        }
-    ];
+        }, { 
+        name: "PandaNotes",
+        description: "Access your course materials.",
+        icon: "/assets/pandanotes.png",
+        url: "https://www.pandanotes.org/",
+     }];
 
     const underDevelopmentAppInfo: AppInfo[] = [
       {
