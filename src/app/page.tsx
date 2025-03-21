@@ -78,29 +78,34 @@ export default function HomePage() {
   const underDevelopmentAppInfo: AppInfo[] = [
     {
       name: "Research @ CMU",
-      description: "Find the best research opportunities on campus.",
+      description: "Campus Research can be intimidating, but it doesn't have to be! Coming to you soon courtesy of ScottyLabs is a new platform making it easier to connect with professors and fellow researchers to pursue your reserach aspirations!",
+      url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
       icon: "/assets/research.png",
-      url: "/research",
     }, {
       name: "Study Group Finder",
-      description: "Find the best study groups on campus",
-      icon: "/assets/studygroup.png",
-      url: "/studygroup",
+      description: "Ever felt you couldn't study alone but can't seem to find the right group? This is going to be the place for you, as we bring a platform to connect fellow students who wish to study similar content",
+      url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
+      icon: "/assets/study_group_finder.png",
     }, {
       name: "Cooking with AI",
       description: "Find the best recipes on campus.",
-      icon: "/assets/cooking.png",
-      url: "/cooking",
+      url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
+      icon: "/assets/cooking_with_AI.png",
     }, {
       name: "CMUGPT",
-      description: "Find the best GPT on campus.",
-      icon: "/assets/gpt.png",
-      url: "/gpt",
+      description: "CMU is its own world, and with constant course chatter and CMU-lingo, we aim to create a search engine specially tailored towards all things CMU",
+      url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
+      icon: "/assets/CMUGPT.png",
     }, {
       name: "Comm[you]nity",
-      description: "Find the best community on campus.",
-      icon: "/assets/community.png",
-      url: "/community",
+      description: "Finding frinds is tough! New place and new environment can have us feeling lost, but not to worry, with comm[you]nit, you can find other students on campus with your same interests!",
+      url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
+      icon: "/assets/comm_you_nity.png",
+    }, {
+      name: "CMU Shuttles",
+      description: "Make the most of CMU Transportation!",
+      url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
+      icon: "/assets/CMU_Shuttles.png",
     }
   ];
 
@@ -279,7 +284,7 @@ export default function HomePage() {
   ))}
 </Swiper>
 </div>
-        <FavoritesBar />
+        <FavoritesBar/>
           {/* Academic Links Section */}
           <div className="flex flex-col gap-6">
             <h2 className={`text-2xl font-bold ${textColor}`}>Academic Links</h2>
@@ -308,14 +313,19 @@ export default function HomePage() {
                       {/* Clickable Box */}
                       <div onClick={(e) => {e.stopPropagation(); togglePopup(index); }} 
                           className="flex-none bg-gradient-to-b from-indigo-200 via-indigo-400 to-slate-900 p-6 rounded-xl shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center w-72 h-48 border-2 border-black cursor-pointer hover:bg-slate-500 transition-all">
-                        <div className="w-32 h-32 mb-2 bg-indigo-400 rounded-full"></div>
+                        <img
+                          src={app.icon || "/assets/placeholder.png"}
+                          alt={app.name}
+                          className="w-20 h-20 mb-2 object-contain"
+                        />
                         <span className="font-medium text-white text-lg">{app.name}</span>
                       </div>
 
                       {/* Popup */}
                       {activePopup === index && (
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white p-4 rounded-lg shadow-lg border-2 border-black w-64">
-                          <p className="text-black text-center font-medium">This feature is under development.</p>
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white p-4 rounded-lg shadow-lg border-2 border-black w-64 z-50">
+                          <h3 className="text-xl font-bold text-black text-center mb-2">{app.name}</h3>
+                          <p className="text-sm text-gray-700 text-center">{app.description}</p>
                         </div>
                       )}
                     </div>
@@ -324,21 +334,18 @@ export default function HomePage() {
             </div>
           </div>
           {activePopup !== null && (
-            <div>
-            <div 
-              className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 flex justify-center items-center"
-              onClick={closePopup} // Close when clicking outside
-            >
-              
+          <div>
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-30 flex justify-center items-center" onClick={closePopup}></div>
+            <div className="fixed top-[12.5vh] left-[12.5vw] bg-white w-[75vw] h-[75vh] p-6 rounded-lg shadow-lg border-2 border-black" onClick={(e) => e.stopPropagation()}>
+              <h2 className="text-3xl font-bold text-black mb-4 text-center">
+                {underDevelopmentAppInfo[activePopup]?.name}
+              </h2>
+              <p className="text-lg text-gray-700 text-center">
+                {underDevelopmentAppInfo[activePopup]?.description}
+              </p>
             </div>
-            <div 
-            className="fixed top-[12.5vh] left-[12.5vw] bg-white w-[75vw] h-[75vh] p-6 rounded-lg shadow-lg border-2 border-black"
-            onClick={(e) => e.stopPropagation()} // Prevent click inside box from closing popup
-        >
-            <p className="text-black text-lg font-medium"> Coming soon!</p>
           </div>
-          </div>
-          )}
+        )}
         </SignedIn>
       </div>
     </main>

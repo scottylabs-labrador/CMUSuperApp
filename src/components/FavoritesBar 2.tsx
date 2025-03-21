@@ -31,7 +31,7 @@ function FavoritesBar() {
         description: "Find your lost items",
         icon: "/assets/lostandfound.png",
         url: "/lostandfound",
-        },
+        }
     ];
 
     const academicAppInfo: AppInfo[] = [
@@ -64,37 +64,32 @@ function FavoritesBar() {
     ];
 
     const underDevelopmentAppInfo: AppInfo[] = [
-      {
+        {
         name: "Research @ CMU",
         description: "Find the best research opportunities on campus.",
-        url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
         icon: "/assets/research.png",
-      }, {
+        url: "/research",
+        }, {
         name: "Study Group Finder",
         description: "Find the best study groups on campus",
-        url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
-        icon: "/assets/study_group_finder.png",
-      }, {
+        icon: "/assets/studygroup.png",
+        url: "/studygroup",
+        }, {
         name: "Cooking with AI",
         description: "Find the best recipes on campus.",
-        url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
-        icon: "/assets/cooking_with_AI.png",
-      }, {
+        icon: "/assets/cooking.png",
+        url: "/cooking",
+        }, {
         name: "CMUGPT",
         description: "Find the best GPT on campus.",
-        url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
-        icon: "/assets/CMUGPT.png",
-      }, {
+        icon: "/assets/gpt.png",
+        url: "/gpt",
+        }, {
         name: "Comm[you]nity",
         description: "Find the best community on campus.",
-        url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
-        icon: "/assets/comm_you_nity.png",
-      }, {
-        name: "CMU Shuttles",
-        description: "Make the most of CMU Transportation!",
-        url: "https://www.youtube.com/shorts/SXHMnicI6Pg",
-        icon: "/assets/CMU_Shuttles.png",
-      },
+        icon: "/assets/community.png",
+        url: "/community",
+        }
     ];
   return (
     <div className="fixed left-2 flex-col overflow-x-auto bg-slate-200 p-1 rounded-lg">
