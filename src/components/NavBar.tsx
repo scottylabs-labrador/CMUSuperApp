@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setIsModalOpen } from "~/lib/features/uiSlice";
 import { usePathname } from "next/navigation";
@@ -13,21 +13,70 @@ export default function NavBar() {
   const page = pathname.split("/")[1];
   const isModalOpen = useAppSelector((state) => state.ui.isModalOpen);
 
+  // Dark mode state
+  const [darkMode, setDarkMode] = useState(true);
+
+  // Sync with global dark mode on initial load and when it changes
+  useEffect(() => {
+    // Check for dark mode preference in localStorage
+    const getDarkMode = () => {
+      const savedMode = localStorage.getItem("darkMode");
+      return savedMode !== null ? savedMode === "true" : true;
+    };
+
+    setDarkMode(getDarkMode());
+
+    // Listen for changes to darkMode in localStorage
+    const handleStorageChange = () => {
+      setDarkMode(getDarkMode());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("darkMode", String(newMode));
+
+    // Dispatch a custom event to notify other components
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  // Theme icon based on dark/light mode
+  const themeIcon = darkMode ? "/assets/logo_light.png" : "/assets/sun.png";
+
   return (
     <Fragment>
-      <div className="flex h-full flex-col overflow-y-auto rounded-lg bg-slate-100 px-3 py-4 shadow-md">
-        <a
-          href="/"
-          className="mb-6 flex items-center gap-2 px-2 text-lg font-bold text-slate-900"
-        >
-          <Image
-            src="/assets/hive.png"
-            width={28}
-            height={28}
-            alt="Hive icon"
-          />
-          Hive
-        </a>
+      <div
+        className={`flex h-full flex-col overflow-y-auto rounded-lg ${darkMode ? "bg-black text-white" : "bg-slate-100"} px-3 py-4 shadow-md transition-colors`}
+      >
+        <div className="mb-6 flex items-center justify-between">
+          <a
+            href="/"
+            className={`flex items-center gap-2 px-2 text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}
+          >
+            <Image
+              src="/assets/hive.png"
+              width={28}
+              height={28}
+              alt="Hive icon"
+            />
+            Hive
+          </a>
+
+          <button
+            onClick={toggleDarkMode}
+            className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-700"
+          >
+            <Image src={themeIcon} width={24} height={24} alt="Toggle Theme" />
+          </button>
+        </div>
 
         <div className="flex flex-col gap-y-3">
           {/* Internal links */}
@@ -37,7 +86,7 @@ export default function NavBar() {
               className={`flex items-center gap-2 rounded-md p-2 transition-colors ${
                 page === "eats"
                   ? "bg-slate-700 font-medium text-white"
-                  : "text-slate-700 hover:bg-slate-200"
+                  : `${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"}`
               }`}
             >
               <Image
@@ -53,7 +102,7 @@ export default function NavBar() {
               className={`flex items-center gap-2 rounded-md p-2 transition-colors ${
                 page === "maps"
                   ? "bg-slate-700 font-medium text-white"
-                  : "text-slate-700 hover:bg-slate-200"
+                  : `${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"}`
               }`}
             >
               <Image
@@ -69,7 +118,7 @@ export default function NavBar() {
               className={`flex items-center gap-2 rounded-md p-2 transition-colors ${
                 page === "courses"
                   ? "bg-slate-700 font-medium text-white"
-                  : "text-slate-700 hover:bg-slate-200"
+                  : `${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"}`
               }`}
             >
               <Image
@@ -83,14 +132,18 @@ export default function NavBar() {
           </div>
 
           {/* External links */}
-          <div className="border-t border-slate-200 pt-2">
-            <h3 className="mb-2 px-2 text-xs font-semibold uppercase text-slate-500">
+          <div
+            className={`border-t ${darkMode ? "border-slate-700" : "border-slate-200"} pt-2`}
+          >
+            <h3
+              className={`mb-2 px-2 text-xs font-semibold uppercase ${darkMode ? "text-gray-400" : "text-slate-500"}`}
+            >
               External Resources
             </h3>
             <a
               href="https://canvas.cmu.edu"
               target="_blank"
-              className="flex items-center gap-2 rounded-md p-2 text-slate-700 transition-colors hover:bg-slate-200"
+              className={`flex items-center gap-2 rounded-md p-2 ${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"} transition-colors`}
             >
               <Image
                 src="/assets/canvas.png"
@@ -103,7 +156,7 @@ export default function NavBar() {
             <a
               href="https://piazza.com"
               target="_blank"
-              className="flex items-center gap-2 rounded-md p-2 text-slate-700 transition-colors hover:bg-slate-200"
+              className={`flex items-center gap-2 rounded-md p-2 ${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"} transition-colors`}
             >
               <Image
                 src="/assets/piazza.png"
@@ -116,7 +169,7 @@ export default function NavBar() {
             <a
               href="https://edstem.org/us/dashboard"
               target="_blank"
-              className="flex items-center gap-2 rounded-md p-2 text-slate-700 transition-colors hover:bg-slate-200"
+              className={`flex items-center gap-2 rounded-md p-2 ${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"} transition-colors`}
             >
               <Image
                 src="/assets/ed.png"
@@ -129,7 +182,7 @@ export default function NavBar() {
             <a
               href="https://s3.andrew.cmu.edu/sio/mpa/"
               target="_blank"
-              className="flex items-center gap-2 rounded-md p-2 text-slate-700 transition-colors hover:bg-slate-200"
+              className={`flex items-center gap-2 rounded-md p-2 ${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"} transition-colors`}
             >
               <Image
                 src="/assets/sio.png"
@@ -142,7 +195,7 @@ export default function NavBar() {
             <a
               href="https://myoie.andrew.cmu.edu/"
               target="_blank"
-              className="flex items-center gap-2 rounded-md p-2 text-slate-700 transition-colors hover:bg-slate-200"
+              className={`flex items-center gap-2 rounded-md p-2 ${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"} transition-colors`}
             >
               <Image
                 src="/assets/oie.png"
@@ -155,7 +208,7 @@ export default function NavBar() {
             <a
               href="https://academicaudit.andrew.cmu.edu/"
               target="_blank"
-              className="flex items-center gap-2 rounded-md p-2 text-slate-700 transition-colors hover:bg-slate-200"
+              className={`flex items-center gap-2 rounded-md p-2 ${darkMode ? "text-white hover:bg-slate-800" : "text-slate-700 hover:bg-slate-200"} transition-colors`}
             >
               <Image
                 src="/assets/stellic.png"
