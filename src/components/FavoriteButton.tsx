@@ -2,7 +2,7 @@ import { useUser } from "@clerk/nextjs";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { addFavorite, getFavorites, removeFavorite } from "~/lib/api/favorites";
-import { AppInfo } from "~/types";
+import { type AppInfo } from "~/types";
 
 interface FavoriteButtonProps {
     app: AppInfo;
@@ -26,14 +26,18 @@ function FavoriteButton({ app }: FavoriteButtonProps) {
     const mutFavorite = useMutation({
         mutationFn: () => addFavorite(app.name, user?.id),
         onSuccess: () => {
-            refetch();
+            refetch().catch((err) => {
+                console.error("Error refetching favorites:", err);
+            });
         },
     });
 
     const mutUnfavorite = useMutation({
         mutationFn: () => removeFavorite(app.name, user?.id),
         onSuccess: () => {
-            refetch();
+            refetch().catch((err) => {
+                console.error("Error refetching favorites:", err);
+            });
         },
     });
 

@@ -1,4 +1,4 @@
-import { AppInfo } from "~/types";
+import { type AppInfo } from "~/types";
 
 interface AppIconProps {
   app: AppInfo;

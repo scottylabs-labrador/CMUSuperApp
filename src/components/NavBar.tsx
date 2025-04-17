@@ -1,17 +1,12 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setIsModalOpen } from "~/lib/features/uiSlice";
 import { usePathname } from "next/navigation";
-import { useAppSelector } from "~/lib/hooks";
 import Image from "next/image";
 
 export default function NavBar() {
-  const dispatch = useDispatch();
   const pathname = usePathname();
   const page = pathname.split("/")[1];
-  const isModalOpen = useAppSelector((state) => state.ui.isModalOpen);
 
   // Dark mode state
   const [darkMode, setDarkMode] = useState(true);

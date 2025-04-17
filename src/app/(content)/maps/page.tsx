@@ -2,13 +2,14 @@
 
 import React from "react";
 
-export default function MapsPage({ params }: { params: { slug: string } }) {
+export default function MapsPage() {
   return (
     <iframe
       className="w-[98vw] h-full fixed top-0 left-[2vw] z-0"
-      src="http://localhost:3002"
+      src="https://cmumaps.com"
       tabIndex={0} /* Make iframe focusable */
-      onLoad={(e) => e.target.contentWindow.focus()} /* Set focus on load */
+      // eslint-disable-next-line
+      onLoad={(e: any) => e.target.contentWindow.focus()} /* Set focus on load */
     />
   );
 }

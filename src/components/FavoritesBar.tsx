@@ -1,14 +1,13 @@
 import { useUser } from "@clerk/nextjs";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import AppIcon from "./AppIcon";
 import { getFavorites } from "~/lib/api/favorites";
-import { AppInfo } from "~/types";
+import { type AppInfo } from "~/types";
 
 function FavoritesBar() {
-    const {isSignedIn, user} = useUser();
-    const queryClient = useQueryClient();
-    const {status, data} = useQuery({ queryKey: ['favorites', user?.id], queryFn: () => getFavorites(user?.id) });
-    const favorites = data || [];
+    const { user } = useUser();
+    const { data } = useQuery({ queryKey: ['favorites', user?.id], queryFn: () => getFavorites(user?.id) });
+    const favorites = data ?? [];
     console.log("bar", favorites);
     const mainAppInfo: AppInfo[] = [
         {

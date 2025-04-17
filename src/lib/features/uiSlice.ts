@@ -1,5 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { setUserId } from 'firebase/analytics';
+import { createSlice } from "@reduxjs/toolkit";
 
 interface UIState {
   isModalOpen: boolean;
@@ -14,6 +13,7 @@ const uiSlice = createSlice({
   initialState,
   reducers: {
     setIsModalOpen(state, action) {
+        // eslint-disable-next-line
         state.isModalOpen = action.payload;
     },
   },

@@ -15,8 +15,7 @@ export async function getFavorites(clerkId: string | undefined): Promise<string[
           clerkId: clerkId,
         },
       })
-    console.log(User)
-    return User?.favorites || [];   
+    return User?.favorites ?? [];   
 }
 
 export async function addFavorite(appName: string, clerkId: string | undefined){
@@ -28,7 +27,6 @@ export async function addFavorite(appName: string, clerkId: string | undefined){
     if (favorites.includes(appName)) {
         return favorites;
     }
-    const newFavorites = [...favorites, appName]
 
     const addUser = await prisma.user.upsert({
         where: {

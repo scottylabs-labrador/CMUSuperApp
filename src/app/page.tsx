@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 //useClerk has been added to allow for re-toggling to sign out page
 import { SignInButton, SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
-import { AppInfo } from "~/types";
+import { type AppInfo } from "~/types";
 import { FaSearch } from "react-icons/fa";
 
 //Modules for carousel and autoplay
@@ -13,10 +13,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-import { Pagination, Navigation, Scrollbar, Autoplay } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 //Modules for implementing profile icon popup
-import { AppBlock } from "~/components/AppBlock";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FavoriteButton from "~/components/FavoriteButton";
 import FavoritesBar from "~/components/FavoritesBar";
@@ -215,7 +214,9 @@ export default function HomePage() {
     container.classList.add("scrolling");
 
     // Clear existing timeout and set new one
+    // eslint-disable-next-line
     clearTimeout((container as any)._scrollTimeout);
+    // eslint-disable-next-line
     (container as any)._scrollTimeout = setTimeout(() => {
       container.classList.remove("scrolling");
     }, 1000);

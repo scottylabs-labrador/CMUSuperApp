@@ -1,11 +1,7 @@
 "use client";
 
 import React from 'react'
-import { AppInfo } from '~/types'
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import { addFavorite, getFavorites, removeFavorite } from '~/lib/api/favorites';
-import { useUser } from '@clerk/nextjs';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { type AppInfo } from '~/types'
 import FavoriteButton from './FavoriteButton';
 
 

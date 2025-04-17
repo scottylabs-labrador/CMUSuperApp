@@ -1,7 +1,4 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { useEffect, useRef, useState } from "react";
-import { Photo } from "~/types";
 
 export default function EatsPage() {
   return (
@@ -9,7 +6,8 @@ export default function EatsPage() {
       className="w-[98vw] h-full fixed top-0 left-[2vw] z-0"
       src="https://cmueats.com"
       tabIndex={0} /* Make iframe focusable */
-      onLoad={(e) => e.target.contentWindow.focus()} /* Set focus on load */
+      // eslint-disable-next-line
+      onLoad={(e: any) => e.target.contentWindow.focus()} /* Set focus on load */
     />
   );
 }

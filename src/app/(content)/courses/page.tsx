@@ -1,6 +1,4 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { useEffect, useRef, useState } from "react";
 
 export default function CoursesPage() {
   return (
